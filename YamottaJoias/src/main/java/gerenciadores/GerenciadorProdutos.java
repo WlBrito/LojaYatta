@@ -1,23 +1,16 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package gerenciadores;
 
-/**
- *
- * @author wbo
- */
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import entities.Produto;
+import file.FilePersistence;
+import file.SerializadorJSONProduto;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author wbo
- */
-public class GerenciadorProdutos {
 
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class GerenciadorProdutos {
+   
     private List<Produto> listaDeProdutos;
 
     public GerenciadorProdutos() {
@@ -48,15 +41,28 @@ public class GerenciadorProdutos {
         }
         return null;
     }
+    
+    public int getTotalProdutos(){
+        return this.listaDeProdutos.size();
+    }
 
     @Override
     public String toString() {
         StringBuilder saida = new StringBuilder();
         for (Produto produto : listaDeProdutos) {
-            saida.append(produto.ToString()).append("\n");
+            saida.append(produto.toString()).append("\n");
         }
         return saida.toString();
-    }
+    }   
+    
+     public String toStringPedido() {
+        StringBuilder saida = new StringBuilder();
+        for (Produto produto : listaDeProdutos) {
+            saida.append(produto.toStringPedido()).append("\n");
+        }
+        return saida.toString();
+    }  
+   
 
     public boolean remProduto(int codProduto) {
         for (Produto produto : listaDeProdutos) {
@@ -68,5 +74,20 @@ public class GerenciadorProdutos {
         }
         System.out.println("Produto não encontrado!");
         return false;
+    }
+    public void salvarNoArquivo(String pathFile){
+         SerializadorJSONProduto  serializadorJSON = new SerializadorJSONProduto();
+        String jsonData = serializadorJSON.ToJSON(this.listaDeProdutos);
+         FilePersistence filePersistence = new FilePersistence();
+         filePersistence.saveToFile(jsonData, pathFile);
+         System.out.println("Salvo com sucesso em " + pathFile);
+    }
+    public void carregarDoArquivo(String pathFile){
+        FilePersistence filePersistence = new FilePersistence();
+        String jsonData = filePersistence.loadFromFile(pathFile);
+        SerializadorJSONProduto desserializadorJson = new SerializadorJSONProduto();
+        this.listaDeProdutos = desserializadorJson.fromJSON(jsonData);
+        
+        System.out.println("Pedidos carregados com sucesso de: " + pathFile);
     }
 }

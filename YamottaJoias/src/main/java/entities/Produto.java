@@ -1,19 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package entities;
-
-/**
- *
- * @author wbo
- */
 import java.util.Random;
 
-/**
- *
- * @author wbo
- */
+
 public class Produto {
 
     protected int idProduto;
@@ -24,6 +12,8 @@ public class Produto {
     protected Random geradorId;
 
     public Produto() {
+        
+        //ID/NOME/ESTOQUE/PVENDA/PCUSTO
         geradorId = new Random();
         this.idProduto = geradorId.nextInt(10000, 30000);
         this.nomeProduto = "";
@@ -46,11 +36,14 @@ public class Produto {
         System.out.println("Em estoque:" + qtdProduto + "\nPreco de venda:" + precoProdutoVenda);
         System.out.println("\nPreco de custo:" + precoProdutoCusto + "\nLucro por unidade:" + (precoProdutoVenda - precoProdutoCusto));
     }
-
-    public String ToString() {
-        return "Info Produto " + idProduto + "{Nome: " + nomeProduto + " || Em estoque:" + qtdProduto
+    @Override
+    public String toString() {
+        return "Info Produto " + idProduto + "\n{Nome: " + nomeProduto + " || Em estoque:" + qtdProduto
                 + " || Preco de venda:" + precoProdutoVenda + " || Preco de custo:" + precoProdutoCusto
                 + " || Lucro por unidade:" + (precoProdutoVenda - precoProdutoCusto) + "}\n";
+    }
+    public String toStringPedido(){
+        return "Info Produto" + idProduto + "\nProduto: " + nomeProduto + " || Preço: " + precoProdutoVenda;
     }
 
     public void setPrecoProdutoCusto(double precoProdutoCusto) {
@@ -72,6 +65,12 @@ public class Produto {
     public int getIdProduto() {
         return idProduto;
     }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+    
+    
 
     public void setNomeProduto(String nomeProduto) {
         this.nomeProduto = nomeProduto;

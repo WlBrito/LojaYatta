@@ -32,6 +32,13 @@ public class Cliente {
         this.cpf_cliente = cpf;
         this.telefone_cliente = telefone;
     }
+    
+    public void copiar (Cliente outro){
+        this.setCpf_cliente(outro.getCpf_cliente());
+        this.setNome_cliente(outro.getNome_cliente());
+        this.setTelefone_cliente(outro.getTelefone_cliente());       
+        
+    }
 
     @Override
     public String toString() {
@@ -70,6 +77,11 @@ public class Cliente {
     public String getTelefone_cliente() {
         return telefone_cliente;
     }
+
+    public void setId_cliente(int id_cliente) {
+        this.id_cliente = id_cliente;
+    }
+    
     
     
 }

@@ -4,6 +4,10 @@
  */
 package gui;
 
+import gui.dialogs.DlgCadCliente;
+import gui.dialogs.Pedido.DlgCadPedido;
+import gui.dialogs.DlgCadProduto;
+
 /**
  *
  * @author wbo
@@ -48,6 +52,11 @@ public class FrGeral extends javax.swing.JFrame {
         btnCliente.setForeground(new java.awt.Color(0, 0, 0));
         btnCliente.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Design sem nome (2).png"))); // NOI18N
         btnCliente.setText("CLIENTES");
+        btnCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClienteActionPerformed(evt);
+            }
+        });
 
         btnPratas.setBackground(new java.awt.Color(231, 231, 231));
         btnPratas.setFont(new java.awt.Font("Segoe UI", 3, 12)); // NOI18N
@@ -120,9 +129,7 @@ public class FrGeral extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(pnlFundoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(pnlFundoGeral, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -133,20 +140,29 @@ public class FrGeral extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnPratasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPratasActionPerformed
-       FrProduto tela = new FrProduto();
-       tela.setVisible(true);
-       tela.setLocationRelativeTo(null);
+        //FrProduto tela = new FrProduto();
+        DlgCadProduto tela = new DlgCadProduto(this, true);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
+
     }//GEN-LAST:event_btnPratasActionPerformed
 
     private void btnPedidosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPedidosActionPerformed
-        // TODO add your handling code here:
+        DlgCadPedido tela = new DlgCadPedido(this, true);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
     }//GEN-LAST:event_btnPedidosActionPerformed
+
+    private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
+        DlgCadCliente tela = new DlgCadCliente(this, true);
+        tela.setLocationRelativeTo(null);
+        tela.setVisible(true);
+
+    }//GEN-LAST:event_btnClienteActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    
-    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCliente;
